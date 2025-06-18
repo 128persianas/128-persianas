@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>128 Persianas de PVC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4fdfd;
+      color: #333;
+      max-width: 600px;
+      margin: auto;
+    }
+    img {
+      max-width: 200px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+  <img src="Logo.png" alt="Logo 128 Persianas">
+  <h1>128 Persianas de PVC</h1>
+  <p style="text-align:center;">Persianas directas de fábrica. Estamos en Monte Grande. Retiro en local o coordinamos el envío por WhatsApp.</p>
+
+  <label for="ancho">Ancho (en cm):</label>
+  <input type="number" id="ancho" placeholder="Ej: 120">
+
+  <label for="alto">Alto (en cm):</label>
+  <input type="number" id="alto" placeholder="Ej: 150">
+
+  <label for="tipo">Tipo de persiana:</label>
+  <select id="tipo" onchange="toggleColor()">
+    <option value="Curva">Curva</option>
+    <option value="Reforzada">Reforzada</option>
+    <option value="Súper reforzada">Súper reforzada</option>
+  </select>
+
+  <div id="colorContainer" style="display: none;">
+    <label for="color">Color:</label>
+    <select id="color">
+      <option value="Blanca">Blanca</option>
+      <option value="Marrón">Marrón</option>
+    </select>
+  </div>
+
+  <button onclick="enviarWhatsApp()">Consultar por WhatsApp</button>
+
+  <script>
+    function toggleColor() {
+      const tipo = document.getElementById('tipo').value;
+      document.getElementById('colorContainer').style.display = tipo === 'Súper reforzada' ? 'block' : 'none';
+    }
+
+    function enviarWhatsApp() {
+      const ancho = document.getElementById('ancho').value;
+      const alto = document.getElementById('alto').value;
+      const tipo = document.getElementById('tipo').value;
+
+      if (!ancho || !alto) {
+        alert("Por favor completá las medidas.");
+        return;
+      }
+
+      let mensaje = "Hola, quiero una persiana de PVC.%0A";
+      mensaje += "Medidas: " + ancho + " cm de ancho x " + alto + " cm de alto.%0A";
+      mensaje += "Tipo: " + tipo;
+
+      if (tipo === 'Súper reforzada') {
+        const color = document.getElementById('color').value;
+        mensaje += "%0AColor: " + color;
+      }
+
+      mensaje += "%0A¿Podés pasarme el presupuesto?";
+      const telefono = "541156689586";
+      const url = "https://wa.me/" + telefono + "?text=" + mensaje;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
